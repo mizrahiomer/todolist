@@ -1,0 +1,20 @@
+
+li{
+    list-style-type: none; 
+}
+.task {
+    cursor: grab;
+}
+.task:active { 
+     cursor: grabbing;
+}
+div i {
+    cursor: pointer;
+}
+div h5 {
+    word-wrap:break-word;
+}
+.complete {
+    display:inline;
+    text-decoration: line-through;
+}
