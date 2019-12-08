@@ -1,4 +1,7 @@
 
+body{
+    font-family: 'Quicksand', sans-serif;
+}
 li{
     list-style-type: none; 
 }
@@ -11,10 +14,13 @@ li{
 div i {
     cursor: pointer;
 }
-div h5 {
+div h2 {
     word-wrap:break-word;
 }
 .complete {
     display:inline;
     text-decoration: line-through;
+}
+.add:focus {
+   font-size: 100px;
 }
