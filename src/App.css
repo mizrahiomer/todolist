@@ -1,0 +1,8 @@
+.App {
+  background-image: url(assets/desk.jpg);
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-attachment: fixed;
+  min-height: 100vh;
+}

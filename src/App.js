@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import Tasks from './components/Tasks'
+import React from 'react';
+import Tasks from './components/Tasks';
+import '../node_modules/semantic-ui-css/semantic.min.css';
+import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-
+const App = () => {
+  return (
+    <div className='App'>
       <Tasks />
-
-    );
-  }
-}
+    </div>
+  );
+};
 export default App;

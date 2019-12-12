@@ -1,30 +1,51 @@
 import React from 'react';
-import cls from './Task.module.css';
+import Reveal from 'react-reveal/Reveal';
+import { Input, Icon } from 'semantic-ui-react';
+import Fade from 'react-reveal/Fade';
+import './Task.css';
 
-const Task = (props) => {
-    const border = props.isComplete ? 'border-success' : 'border-danger';
-    const completeBtn = props.isComplete ? 'far fa-2x fa-check-circle text-success mx-2' : 'far fa-2x fa-circle mx-2';
-    const completeTxt = props.isComplete ? cls.complete : 'd-inline'
-    const taskContent = props.isEditing ?
-        <form onSubmit={props.editSubmit}>
-            <input autoFocus type='text' value={props.contentEdit} className='d-inline form-control p-2' onChange={props.onEdit} onBlur={props.editSubmit} />
-        </form>
-        : <h2 className={completeTxt}>{props.content}</h2>;
-    const editBtn = !props.isEditing ?
-        <button className='btn btn-primary mx-1' onClick={props.edit}><i className="fas fa-edit"></i></button> :
-        <button className='btn btn-success mx-1' onClick={props.editSubmit}><i className="fas fa-check"></i></button>
-    return (
-        <li className={cls.task + ' card p-2 m-2 col-sm-6 border ' + border} onDragOver={props.dragOver}>
-            <div draggable onDragStart={props.dragStart} onDragEnd={props.dragEnd}>
-                {!props.isEditing ? <i onClick={props.complete} className={completeBtn}></i> : null}
-                {taskContent}
-                <p className='text-muted h6'>{props.date}</p>
-                <div className='text-right'>
-                    <button className='btn btn-danger mx-1' onClick={props.delete}><i className="fas fa-trash-alt"></i></button>
-                    {editBtn}
-                </div>
-            </div>
-        </li>
-    )
-}
+const Task = props => {
+  const completeBtn = props.isComplete
+    ? 'check circle green big'
+    : 'check circle outline big ';
+  const completeTxt = props.isComplete ? 'complete' : 'd-inline';
+  const taskContent = props.isEditing ? (
+    <form onSubmit={props.editSubmit}>
+      <Reveal>
+        <Input
+          required
+          autoFocus
+          type='text'
+          value={props.contentEdit}
+          onChange={props.onEdit}
+          onBlur={props.editSubmit}
+        />
+      </Reveal>
+    </form>
+  ) : (
+    <h2 className={completeTxt}>{props.content}</h2>
+  );
+  const editBtn = !props.isEditing ? (
+    <Icon name='edit big' color='blue' onClick={props.edit} />
+  ) : (
+    <Icon name='check big' color='green' onClick={props.editSubmit} />
+  );
+  return (
+    <Fade bottom>
+      <li onDragOver={props.dragOver}>
+        <div draggable onDragStart={props.dragStart} onDragEnd={props.dragEnd}>
+          {!props.isEditing ? (
+            <Icon className={completeBtn} onClick={props.complete}></Icon>
+          ) : null}
+          {taskContent}
+          <p className='text-muted h6'>{props.date}</p>
+          <div className='text-right'>
+            <Icon name='trash big ' color='red' onClick={props.delete} />
+            {editBtn}
+          </div>
+        </div>
+      </li>
+    </Fade>
+  );
+};
 export default Task;
