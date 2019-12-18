@@ -1,0 +1,7 @@
+.form-inline .icon {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.form .icon:hover {
+  opacity: 1;
+}

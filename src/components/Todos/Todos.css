@@ -1,0 +1,13 @@
+.container {
+  padding-top: 1%;
+}
+.row .icon {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.icon:hover {
+  opacity: 1;
+}
+.form-inline .form-control {
+  font-size: 18px;
+}
