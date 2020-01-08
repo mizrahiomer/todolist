@@ -1,13 +1,16 @@
-.container {
-  padding-top: 1%;
+.todos-container {
+  margin: 1em;
 }
-.row .icon {
-  opacity: 0.8;
-  cursor: pointer;
+
+.todos-container .todo {
+  width: 60%;
 }
-.icon:hover {
-  opacity: 1;
-}
-.form-inline .form-control {
-  font-size: 18px;
+
+@media (max-width: 800px) {
+  .todos-container {
+    display: block;
+  }
+  .todos-container .todo {
+    width: 90%;
+  }
 }

@@ -4,6 +4,7 @@ export const EDIT_TODO_SUBMIT = 'EDIT_TODO_SUBMIT';
 export const DELETE_TODO = 'DELETE_TODO';
 export const COMPLETE_TODO = 'COMPLETE_TODO';
 export const DELETE_ALL_TODOS = 'DELETE_ALL_TODOS';
+export const REORDER_TODOS = 'REORDER_TODOS';
 export const addTodo = (content, label, date) => {
   return {
     type: ADD_TODO,
@@ -42,5 +43,13 @@ export const completeTodo = id => {
 export const deleteAllTodos = () => {
   return {
     type: DELETE_ALL_TODOS
+  };
+};
+export const reorderTodos = (sourceIndex, destIndex, draggableId) => {
+  return {
+    type: REORDER_TODOS,
+    sourceIndex,
+    destIndex,
+    draggableId
   };
 };

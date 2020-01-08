@@ -1,25 +1,17 @@
 import * as actionTypes from '../actions/todos';
-
-const todosReducer = (
-  state = [
-    { id: 1, content: '22', label: 'general', date: 1, lastModifiedDate: 1 }
-  ],
-  action
-) => {
+const todosReducer = (state = [], action) => {
   switch (action.type) {
     case actionTypes.ADD_TODO:
-      return [
-        ...state,
-        {
-          id: action.date + action.content + action.label + state.length,
-          content: action.content,
-          label: action.label,
-          date: action.date,
-          lastModifiedDate: '',
-          isComplete: false,
-          isEditing: false
-        }
-      ];
+      const newTodo = {
+        id: action.date + action.content + action.label + state.length,
+        content: action.content,
+        label: action.label,
+        date: action.date,
+        lastModifiedDate: '',
+        isComplete: false,
+        isEditing: false
+      };
+      return [...state, newTodo];
     case actionTypes.DELETE_TODO:
       return state.filter(todo => todo.id !== action.id);
     case actionTypes.DELETE_ALL_TODOS:
@@ -44,6 +36,11 @@ const todosReducer = (
             }
           : todo
       );
+    case actionTypes.REORDER_TODOS:
+      const draggedTodo = state.find(todo => todo.id === action.draggableId);
+      state.splice(action.sourceIndex, 1);
+      state.splice(action.destIndex, 0, draggedTodo);
+      return state;
 
     default:
       return state;

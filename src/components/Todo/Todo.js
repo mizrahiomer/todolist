@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Reveal from 'react-reveal/Reveal';
-import { Icon, Segment, Label } from 'semantic-ui-react';
+import { Icon, Label } from 'semantic-ui-react';
 import ReactTooltip from 'react-tooltip';
-import Fade from 'react-reveal/Fade';
 import _ from 'lodash';
+
 import {
   editTodo,
   editTodoSubmit,
@@ -14,6 +14,7 @@ import {
 } from '../../stateManager/actions/todos';
 import { Labels } from '../../stateManager/actions/filters';
 import './Todo.css';
+import { Draggable } from 'react-beautiful-dnd';
 
 class Todo extends Component {
   state = {
@@ -57,66 +58,117 @@ class Todo extends Component {
     console.log(color);
     return color;
   };
+
   render() {
     const completeBtn = this.props.isComplete
       ? 'check circle green big'
       : 'check circle outline big ';
+    const completeContent = this.props.isComplete ? 'completed ' : '';
     const lastModifiedDate =
       this.props.lastModifiedDate !== ''
         ? 'Last modified date: ' + this.props.lastModifiedDate
         : '';
 
     return (
-      <Fade bootom>
-        <Segment tertiary className='col-sm-7 yellow ' inverted padded>
-          <Label ribbon color={this.getLabelColor(this.props.label)}>
-            {_.capitalize(this.props.label)}
-          </Label>
-
-          {this.props.isEditing ? (
-            <Reveal>
-              <form
-                className='form-inline mt-4'
-                onSubmit={this.OnSubmitHandler}
-              >
-                <input
-                  className='form-control'
-                  required
-                  autoFocus
-                  type='text'
-                  value={this.state.editContent}
-                  onChange={this.onContentEditHandler}
-                ></input>
-                <select
-                  className='form-control'
-                  value={this.state.editLabel}
-                  onChange={this.onLabelEditHandler}
+      <Draggable draggableId={this.props.id} index={this.props.index}>
+        {provided => (
+          <div
+            className='todo'
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <Label ribbon color={this.getLabelColor(this.props.label)}>
+              {_.capitalize(this.props.label)}
+            </Label>
+            {this.props.isEditing ? (
+              <Reveal>
+                <form
+                  className='form-container'
+                  onSubmit={this.OnSubmitHandler}
                 >
-                  {Labels.map(label => (
-                    <option key={label.value} value={label.value}>
-                      {label.displayedValue}
-                    </option>
-                  ))}
-                </select>
-                <Icon
-                  className='check big green mx-2'
-                  onClick={this.OnSubmitHandler}
+                  <input
+                    className='form-item'
+                    autoFocus
+                    type='text'
+                    value={this.state.editContent}
+                    onChange={this.onContentEditHandler}
+                  ></input>
+                  <select
+                    className='form-item'
+                    value={this.state.editLabel}
+                    onChange={this.onLabelEditHandler}
+                  >
+                    {Labels.map(label => (
+                      <option key={label.value} value={label.value}>
+                        {_.capitalize(label.value)}
+                      </option>
+                    ))}
+                  </select>
+                  <Icon
+                    className='check big green form-icon'
+                    disabled={!this.state.editContent.trim() ? true : false}
+                    onClick={this.OnSubmitHandler}
+                  />
+                </form>
+              </Reveal>
+            ) : (
+              <div className='details'>
+                <span
+                  className={completeContent + 'content'}
+                  onClick={() => this.props.editTodo(this.props.id)}
+                  data-tip='Click to edit'
+                >
+                  {this.props.content}
+                </span>
+                <ReactTooltip
+                  place='bottom'
+                  type='light'
+                  effect='solid'
+                  afterShow={() => {
+                    setTimeout(ReactTooltip.hide, 8000);
+                  }}
                 />
-              </form>
-            </Reveal>
-          ) : (
-            <div className='mt-4'>
+              </div>
+            )}
+            <div className='dates'>
+              <p>Create date: {this.props.date}</p>
+              <p>{lastModifiedDate}</p>
+            </div>
+            <div className='btns'>
+              <Icon
+                className='x big red'
+                data-tip='Delete todo'
+                onClick={() => this.props.deleteTodo(this.props.id)}
+              />
+              <ReactTooltip
+                place='bottom'
+                type='light'
+                effect='solid'
+                afterShow={() => {
+                  setTimeout(ReactTooltip.hide, 8000);
+                }}
+              />
+              <Icon
+                className='copy big teal'
+                data-tip='Duplicate todo'
+                onClick={this.onDuplicateHandler}
+              />
+              <ReactTooltip
+                place='bottom'
+                type='light'
+                effect='solid'
+                afterShow={() => {
+                  setTimeout(ReactTooltip.hide, 8000);
+                }}
+              />
               <Icon
                 className={completeBtn}
+                data-tip={
+                  !this.props.isComplete ? 'Complete todo' : 'Uncomplete todo'
+                }
                 onClick={() => this.props.completeTodo(this.props.id)}
               ></Icon>
-              <div
-                className='d-inline'
-                onClick={() => this.props.editTodo(this.props.id)}
-                data-tip='Click to edit'
-              >
-                {this.props.content}
-              </div>
               <ReactTooltip
                 place='bottom'
                 type='light'
@@ -126,42 +178,9 @@ class Todo extends Component {
                 }}
               />
             </div>
-          )}
-
-          <div className='text-muted'>
-            <p className='mt-3 mb-0'>Create date: {this.props.date}</p>
-            <p className='m-0'>{lastModifiedDate}</p>
           </div>
-          <div className=' text-right'>
-            <Icon
-              className='x big red'
-              data-tip='Delete todo'
-              onClick={() => this.props.deleteTodo(this.props.id)}
-            />
-            <ReactTooltip
-              place='bottom'
-              type='light'
-              effect='solid'
-              afterShow={() => {
-                setTimeout(ReactTooltip.hide, 8000);
-              }}
-            />
-            <Icon
-              className='copy big teal'
-              data-tip='Duplicate todo'
-              onClick={this.onDuplicateHandler}
-            />
-            <ReactTooltip
-              place='bottom'
-              type='light'
-              effect='solid'
-              afterShow={() => {
-                setTimeout(ReactTooltip.hide, 8000);
-              }}
-            />
-          </div>
-        </Segment>
-      </Fade>
+        )}
+      </Draggable>
     );
   }
 }
