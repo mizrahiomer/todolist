@@ -1,5 +1,6 @@
 .todo {
   background-color: rgba(221, 218, 45, 0.9);
+  border: 0.1em rgba(133, 130, 128, 0.9) solid;
   cursor: grab;
   border-radius: 2em;
   padding: 1em;
@@ -33,4 +34,7 @@
 }
 .completed {
   text-decoration: line-through;
+}
+.dates {
+  color: gray;
 }

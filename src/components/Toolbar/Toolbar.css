@@ -11,10 +11,10 @@
   margin: 0.5em;
 }
 .form-item.input {
-  width: 50%;
+  width: 55%;
 }
 .form-item.select {
-  width: 30%;
+  width: 25%;
 }
 .form-item:focus {
   box-shadow: 0px 0px 5px black;
@@ -27,5 +27,8 @@
   cursor: pointer;
 }
 .btns-group {
-  margin: 1em;
+  margin: 0.5em;
+}
+.btns-group .icon {
+  margin-bottom: 0.2em;
 }

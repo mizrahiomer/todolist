@@ -30,19 +30,23 @@ class Todos extends Component {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {this.props.todos.map((task, i) => (
-                <Todo
-                  key={task.id}
-                  id={task.id}
-                  label={task.label}
-                  index={i}
-                  content={task.content}
-                  date={task.date}
-                  isEditing={task.isEditing}
-                  isComplete={task.isComplete}
-                  lastModifiedDate={task.lastModifiedDate}
-                />
-              ))}
+              {this.props.todos.length !== 0 ? (
+                this.props.todos.map((task, i) => (
+                  <Todo
+                    key={task.id}
+                    id={task.id}
+                    label={task.label}
+                    index={i}
+                    content={task.content}
+                    date={task.date}
+                    isEditing={task.isEditing}
+                    isComplete={task.isComplete}
+                    lastModifiedDate={task.lastModifiedDate}
+                  />
+                ))
+              ) : (
+                <div className='message'>No todos to display</div>
+              )}
               {provided.placeholder}
             </div>
           )}

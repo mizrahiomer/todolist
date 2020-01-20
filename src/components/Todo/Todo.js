@@ -55,7 +55,6 @@ class Todo extends Component {
   getLabelColor = myLabel => {
     const index = Labels.findIndex(label => label.value === myLabel);
     const color = Labels[index].color;
-    console.log(color);
     return color;
   };
 

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Icon, Button } from 'semantic-ui-react';
+import { Modal } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
 import Fade from 'react-reveal/Fade';
 import _ from 'lodash';
@@ -16,7 +17,8 @@ import './Toolbar.css';
 class Toolbar extends Component {
   state = {
     content: '',
-    label: 'general'
+    label: 'general',
+    showModal: false
   };
   onChangeHandler = e => this.setState({ content: e.target.value });
 
@@ -80,48 +82,31 @@ class Toolbar extends Component {
               }}
             />
           </form>
-
-          <button onClick={() => console.log(this.state)}>state</button>
-          <button onClick={() => console.log(this.props.todos)}>todos</button>
-          <button onClick={() => console.log(this.props.filters)}>
-            filters
-          </button>
           <div className='btns-group'>
             <Button
-              basic={
-                this.props.filters.status === Filters.SHOW_ALL ? false : true
+              active={
+                this.props.filters.status === Filters.SHOW_ALL ? true : false
               }
-              className='tiny black'
+              inverted
+              className='tiny blue'
               onClick={() => this.props.setStatusFilter(Filters.SHOW_ALL)}
             >
               All
             </Button>
             <Button
-              basic={
-                this.props.filters.status === Filters.SHOW_ACTIVE ? false : true
-              }
+              inverted
               className='tiny red'
               onClick={() => this.props.setStatusFilter(Filters.SHOW_ACTIVE)}
             >
               Active
             </Button>
             <Button
-              basic={
-                this.props.filters.status === Filters.SHOW_COMPLETED
-                  ? false
-                  : true
-              }
+              inverted
               className='tiny green'
               onClick={() => this.props.setStatusFilter(Filters.SHOW_COMPLETED)}
             >
               Completed
             </Button>
-            <Icon
-              className='trash big grey'
-              disabled={this.props.todos.length !== 0 ? false : true}
-              onClick={() => this.props.deleteAllTodos()}
-              data-tip='Delete all todos'
-            />
             <ReactTooltip
               place='bottom'
               type='light'
@@ -131,25 +116,64 @@ class Toolbar extends Component {
               }}
             />
           </div>
+
           <div className='btns-group'>
             <Button
-              basic={this.props.filters.label === 'all' ? false : true}
+              inverted
+              active={this.props.filters.label === 'all' ? true : false}
               onClick={() => this.props.setLabelFilter('all')}
-              className='mini black'
+              className='mini blue'
             >
               All
             </Button>
             {Labels.map(label => (
               <Button
                 key={label.value}
-                toggle
-                basic={this.props.filters.label === label.value ? false : true}
+                inverted
                 onClick={() => this.props.setLabelFilter(label.value)}
                 className={label.color + ' mini'}
               >
                 {_.capitalize(label.value)}
               </Button>
             ))}
+            <Icon
+              className='trash big grey'
+              disabled={this.props.todos.length !== 0 ? false : true}
+              onClick={() => this.setState({ showModal: true })}
+              data-tip='Delete all todos'
+            />
+            <Modal
+              show={this.state.showModal}
+              centered
+              keyboard
+              onHide={() => this.setState({ showModal: false })}
+            >
+              <Modal.Header>
+                <Modal.Title>
+                  Are you sure you want to delete all todos ?
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>You will not be able to recover it</Modal.Body>
+              <Modal.Footer>
+                <Button
+                  className='red'
+                  inverted
+                  onClick={() => this.setState({ showModal: false })}
+                >
+                  No, Keep them
+                </Button>
+                <Button
+                  className='green'
+                  inverted
+                  onClick={() => {
+                    this.props.deleteAllTodos();
+                    this.setState({ showModal: false });
+                  }}
+                >
+                  Yes, Delete All
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </Fade>
       </Fragment>

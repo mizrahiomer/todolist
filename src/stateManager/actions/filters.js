@@ -35,7 +35,7 @@ export const Filters = {
 };
 export const Labels = [
   { value: 'general', color: 'orange' },
-  { value: 'home', color: 'blue' },
+  { value: 'home', color: 'violet' },
   { value: 'bussines', color: 'red' },
   { value: 'personal', color: 'purple' }
 ];

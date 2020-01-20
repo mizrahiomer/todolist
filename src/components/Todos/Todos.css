@@ -1,16 +1,27 @@
 .todos-container {
   margin: 1em;
 }
-
 .todos-container .todo {
   width: 60%;
 }
+.message {
+  width: 30%;
+  padding: 0.5em;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(221, 218, 45, 0.9);
+  border: 0.1em rgba(133, 130, 128, 0.9) solid;
+  box-shadow: 0 0 15px rgba(33, 33, 33, 0.3);
+  cursor: default;
+  border-radius: 1em;
+  color: white;
+}
 
 @media (max-width: 800px) {
-  .todos-container {
-    display: block;
-  }
   .todos-container .todo {
+    width: 90%;
+  }
+  .message {
     width: 90%;
   }
 }
