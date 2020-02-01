@@ -69,18 +69,12 @@ class Toolbar extends Component {
               ))}
             </select>
             <Icon
-              className='plus blue big form-icon'
+              className='plus green big form-icon'
               disabled={!this.state.content.trim() ? true : false}
               onClick={this.onTodoSubmit}
               data-tip='Add new todo'
             />
-            <ReactTooltip
-              place='bottom'
-              effect='solid'
-              afterShow={() => {
-                setTimeout(ReactTooltip.hide, 9000);
-              }}
-            />
+            <ReactTooltip place='bottom' type='light' effect='solid' />
           </form>
           <div className='btns-group'>
             <Button
@@ -107,40 +101,18 @@ class Toolbar extends Component {
             >
               Completed
             </Button>
-            <ReactTooltip
-              place='bottom'
-              type='light'
-              effect='solid'
-              afterShow={() => {
-                setTimeout(ReactTooltip.hide, 9000);
-              }}
-            />
-          </div>
-
-          <div className='btns-group'>
-            <Button
-              inverted
-              active={this.props.filters.label === 'all' ? true : false}
-              onClick={() => this.props.setLabelFilter('all')}
-              className='mini blue'
-            >
-              All
-            </Button>
-            {Labels.map(label => (
-              <Button
-                key={label.value}
-                inverted
-                onClick={() => this.props.setLabelFilter(label.value)}
-                className={label.color + ' mini'}
-              >
-                {_.capitalize(label.value)}
-              </Button>
-            ))}
             <Icon
-              className='trash big grey'
+              className='trash big inverted'
               disabled={this.props.todos.length !== 0 ? false : true}
               onClick={() => this.setState({ showModal: true })}
               data-tip='Delete all todos'
+              data-for='trash'
+            />
+            <ReactTooltip
+              id='trash'
+              place='right'
+              type='light'
+              effect='solid'
             />
             <Modal
               show={this.state.showModal}
@@ -174,6 +146,28 @@ class Toolbar extends Component {
                 </Button>
               </Modal.Footer>
             </Modal>
+          </div>
+
+          <div className='btns-group'>
+            <Button
+              inverted
+              active={this.props.filters.label === 'all' ? true : false}
+              onClick={() => this.props.setLabelFilter('all')}
+              className='mini blue'
+            >
+              All
+            </Button>
+
+            {Labels.map(label => (
+              <Button
+                key={label.value}
+                inverted
+                onClick={() => this.props.setLabelFilter(label.value)}
+                className={label.color + ' mini'}
+              >
+                {_.capitalize(label.value)}
+              </Button>
+            ))}
           </div>
         </Fade>
       </Fragment>

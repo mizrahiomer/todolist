@@ -7,13 +7,13 @@
 .message {
   width: 30%;
   padding: 0.5em;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 1.3em;
   text-align: center;
-  background-color: rgba(221, 218, 45, 0.9);
-  border: 0.1em rgba(133, 130, 128, 0.9) solid;
+  background-color: rgba(221, 218, 45, 0.8);
   box-shadow: 0 0 15px rgba(33, 33, 33, 0.3);
   cursor: default;
-  border-radius: 1em;
+  border-radius: 0.7em;
   color: white;
 }
 

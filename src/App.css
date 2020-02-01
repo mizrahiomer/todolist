@@ -5,4 +5,13 @@
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.1em;
+  padding-left: 0.25em;
+  padding-bottom: 1em;
+  margin-bottom: 0;
+}
+.button {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.1em;
 }

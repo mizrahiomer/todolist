@@ -1,5 +1,5 @@
 .todo {
-  background-color: rgba(221, 218, 45, 0.9);
+  background-color: rgba(240, 237, 52, 0.9);
   border: 0.1em rgba(133, 130, 128, 0.9) solid;
   cursor: grab;
   border-radius: 2em;
@@ -8,9 +8,9 @@
   color: black;
   word-wrap: break-word;
 }
-
 .todo:hover {
   box-shadow: 0 0 15px rgba(33, 33, 33, 0.3);
+  background-color: rgba(255, 251, 44, 0.9);
 }
 .todo .icon {
   display: inline;

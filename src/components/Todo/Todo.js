@@ -117,16 +117,15 @@ class Todo extends Component {
                   className={completeContent + 'content'}
                   onClick={() => this.props.editTodo(this.props.id)}
                   data-tip='Click to edit'
+                  data-for='edit'
                 >
                   {this.props.content}
                 </span>
                 <ReactTooltip
+                  id='edit'
                   place='bottom'
                   type='light'
                   effect='solid'
-                  afterShow={() => {
-                    setTimeout(ReactTooltip.hide, 8000);
-                  }}
                 />
               </div>
             )}
@@ -137,44 +136,39 @@ class Todo extends Component {
             <div className='btns'>
               <Icon
                 className='x big red'
-                data-tip='Delete todo'
+                data-tip='Delete'
+                data-for='delete'
                 onClick={() => this.props.deleteTodo(this.props.id)}
               />
               <ReactTooltip
+                id='delete'
                 place='bottom'
                 type='light'
                 effect='solid'
-                afterShow={() => {
-                  setTimeout(ReactTooltip.hide, 8000);
-                }}
               />
               <Icon
                 className='copy big teal'
-                data-tip='Duplicate todo'
+                data-tip='Duplicate'
+                data-for='duplicate'
                 onClick={this.onDuplicateHandler}
               />
               <ReactTooltip
+                id='duplicate'
                 place='bottom'
                 type='light'
                 effect='solid'
-                afterShow={() => {
-                  setTimeout(ReactTooltip.hide, 8000);
-                }}
               />
               <Icon
                 className={completeBtn}
-                data-tip={
-                  !this.props.isComplete ? 'Complete todo' : 'Uncomplete todo'
-                }
+                data-tip={!this.props.isComplete ? 'Complete' : 'Uncomplete'}
+                data-for='complete'
                 onClick={() => this.props.completeTodo(this.props.id)}
               ></Icon>
               <ReactTooltip
+                id='complete'
                 place='bottom'
                 type='light'
                 effect='solid'
-                afterShow={() => {
-                  setTimeout(ReactTooltip.hide, 8000);
-                }}
               />
             </div>
           </div>
