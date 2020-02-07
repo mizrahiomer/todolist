@@ -65,7 +65,7 @@ class Todo extends Component {
     const completeContent = this.props.isComplete ? 'completed ' : '';
     const lastModifiedDate =
       this.props.lastModifiedDate !== ''
-        ? 'Last modified date: ' + this.props.lastModifiedDate
+        ? 'Last modified: ' + this.props.lastModifiedDate
         : '';
 
     return (
@@ -117,12 +117,12 @@ class Todo extends Component {
                   className={completeContent + 'content'}
                   onClick={() => this.props.editTodo(this.props.id)}
                   data-tip='Click to edit'
-                  data-for='edit'
+                  data-for={'edit' + this.props.id}
                 >
                   {this.props.content}
                 </span>
                 <ReactTooltip
-                  id='edit'
+                  id={'edit' + this.props.id}
                   place='bottom'
                   type='light'
                   effect='solid'
@@ -137,11 +137,11 @@ class Todo extends Component {
               <Icon
                 className='x big red'
                 data-tip='Delete'
-                data-for='delete'
+                data-for={'delete' + this.props.id}
                 onClick={() => this.props.deleteTodo(this.props.id)}
               />
               <ReactTooltip
-                id='delete'
+                id={'delete' + this.props.id}
                 place='bottom'
                 type='light'
                 effect='solid'
@@ -149,11 +149,11 @@ class Todo extends Component {
               <Icon
                 className='copy big teal'
                 data-tip='Duplicate'
-                data-for='duplicate'
+                data-for={'duplicate' + this.props.id}
                 onClick={this.onDuplicateHandler}
               />
               <ReactTooltip
-                id='duplicate'
+                id={'duplicate' + this.props.id}
                 place='bottom'
                 type='light'
                 effect='solid'
@@ -161,11 +161,11 @@ class Todo extends Component {
               <Icon
                 className={completeBtn}
                 data-tip={!this.props.isComplete ? 'Complete' : 'Uncomplete'}
-                data-for='complete'
+                data-for={'complete' + this.props.id}
                 onClick={() => this.props.completeTodo(this.props.id)}
               ></Icon>
               <ReactTooltip
-                id='complete'
+                id={'complete' + this.props.id}
                 place='bottom'
                 type='light'
                 effect='solid'

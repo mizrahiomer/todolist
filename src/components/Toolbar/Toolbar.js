@@ -63,7 +63,7 @@ class Toolbar extends Component {
               onChange={this.onLabelChange}
             >
               {Labels.map(label => (
-                <option key={label.value} value={label.value}>
+                <option key={label.value} value={label.value} id={label.value}>
                   {_.capitalize(label.value)}
                 </option>
               ))}
@@ -74,7 +74,7 @@ class Toolbar extends Component {
               onClick={this.onTodoSubmit}
               data-tip='Add new todo'
             />
-            <ReactTooltip place='bottom' type='light' effect='solid' />
+            <ReactTooltip place='bottom' effect='solid' />
           </form>
           <div className='btns-group'>
             <Button
@@ -102,18 +102,13 @@ class Toolbar extends Component {
               Completed
             </Button>
             <Icon
-              className='trash big inverted'
+              className='trash big '
               disabled={this.props.todos.length !== 0 ? false : true}
               onClick={() => this.setState({ showModal: true })}
               data-tip='Delete all todos'
               data-for='trash'
             />
-            <ReactTooltip
-              id='trash'
-              place='right'
-              type='light'
-              effect='solid'
-            />
+            <ReactTooltip id='trash' place='right' effect='solid' />
             <Modal
               show={this.state.showModal}
               centered

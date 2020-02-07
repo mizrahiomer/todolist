@@ -1,4 +1,4 @@
-.App {
+.app {
   background-image: url(assets/desk.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -6,12 +6,20 @@
   background-attachment: fixed;
   min-height: 100vh;
   font-family: 'Open Sans', sans-serif;
-  letter-spacing: 0.1em;
-  padding-left: 0.25em;
+  letter-spacing: 0.05em;
+  padding-left: 1.5em;
   padding-bottom: 1em;
   margin-bottom: 0;
 }
 .button {
-  font-family: 'Open Sans', sans-serif;
-  letter-spacing: 0.1em;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  padding: 0.8em 1em !important;
+  margin-right: 0.7em !important;
+}
+.icon {
+  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.icon:hover {
+  transform: scale(1.2);
 }

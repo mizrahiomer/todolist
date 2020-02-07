@@ -1,8 +1,8 @@
 .todos-container {
-  margin: 1em;
+  margin: 1em 0;
 }
 .todos-container .todo {
-  width: 60%;
+  width: 65%;
 }
 .message {
   width: 30%;
@@ -10,18 +10,18 @@
   font-weight: 600;
   font-size: 1.3em;
   text-align: center;
-  background-color: rgba(221, 218, 45, 0.8);
-  box-shadow: 0 0 15px rgba(33, 33, 33, 0.3);
+  background-color: #ecea5e;
+  border: 0.1em #434e52 solid;
   cursor: default;
-  border-radius: 0.7em;
-  color: white;
+  border-radius: 0.5em;
+  color: #434e52;
 }
 
 @media (max-width: 800px) {
   .todos-container .todo {
-    width: 90%;
+    width: 95%;
   }
   .message {
-    width: 90%;
+    width: 95%;
   }
 }
