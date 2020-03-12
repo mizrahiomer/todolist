@@ -69,7 +69,7 @@ class Toolbar extends Component {
               ))}
             </select>
             <Icon
-              className='plus green big form-icon'
+              className='plus big form-icon'
               disabled={!this.state.content.trim() ? true : false}
               onClick={this.onTodoSubmit}
               data-tip='Add new todo'
