@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "12f4ae41cac56b382b2ce5a939d4c8ce",
+    "revision": "02a999b03d8c8cfb2837239bfb8d2524",
     "url": "/todolist/index.html"
   },
   {
@@ -8,20 +8,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/todolist/static/css/2.dc32b9bf.chunk.css"
   },
   {
-    "revision": "1ebd92a8cb02aef2ab34",
-    "url": "/todolist/static/css/main.68cbd9d2.chunk.css"
+    "revision": "5f12f5a8aa39d22bfebe",
+    "url": "/todolist/static/css/main.b1ae2559.chunk.css"
   },
   {
     "revision": "f3a2aa8395c1549fb5c9",
     "url": "/todolist/static/js/2.11d080a8.chunk.js"
   },
   {
-    "revision": "1ebd92a8cb02aef2ab34",
-    "url": "/todolist/static/js/main.d92b91c4.chunk.js"
+    "revision": "5f12f5a8aa39d22bfebe",
+    "url": "/todolist/static/js/main.fa9265f7.chunk.js"
   },
   {
     "revision": "acf21e0c3457f743e02a",
     "url": "/todolist/static/js/runtime-main.4bf74c9b.js"
+  },
+  {
+    "revision": "5da70062247d9176c73a6f03003448a4",
+    "url": "/todolist/static/media/bg.5da70062.png"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
@@ -42,10 +46,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
     "url": "/todolist/static/media/brand-icons.e8c322de.woff2"
-  },
-  {
-    "revision": "72ab91eb31b7480a154af67b98073ac1",
-    "url": "/todolist/static/media/desk.72ab91eb.jpg"
   },
   {
     "revision": "9c74e172f87984c48ddf5c8108cabe67",
